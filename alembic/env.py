@@ -26,7 +26,6 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 from config.models import Base
 
-from users.models import UsersOrm
 from schedules.models import ScheduleOrm
 target_metadata = Base.metadata
 # target_metadata = None

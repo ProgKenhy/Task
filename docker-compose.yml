@@ -18,6 +18,16 @@ services:
     networks:
       - task_default
 
+  db_tests:
+    image: "postgres:16.3-bookworm"
+    environment:
+      POSTGRES_USER: "${POSTGRES_USER}_test"
+      POSTGRES_PASSWORD: "${POSTGRES_PASS}_test"
+      POSTGRES_DB: "${POSTGRES_NAME}_test"
+    ports:
+      - "${POSTGRES_PORT}1:5432"
+    networks:
+      - task_default
 
 volumes:
   postgres: { }

@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: "postgres:16.3-bookworm"
+    environment:
+      POSTGRES_USER: "${POSTGRES_USER}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASS}"
+      POSTGRES_DB: "${POSTGRES_NAME}"
+    volumes:
+      - "postgres:/var/lib/postgresql/data"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_NAME}" ]
+      interval: 10s
+      retries: 5
+    restart: unless-stopped
+    stop_grace_period: "3s"
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    networks:
+      - task_default
+
+
+volumes:
+  postgres: { }
+
+networks:
+  task_default:
+    driver: bridge

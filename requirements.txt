@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+SQLAlchemy
+
+psycopg2
+asyncpg
+alembic
+pydantic-settings

@@ -16,5 +16,4 @@ class ScheduleOrm(Base):
     drug_name: Mapped[str_256] = mapped_column(String(256))
     rec_frequency: Mapped[int]
     duration: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
-    is_continuous: Mapped[Optional[bool]] = mapped_column(Boolean, nullable=True)
     created_at: Mapped[created_at]

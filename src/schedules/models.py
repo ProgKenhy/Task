@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Optional
 
 from sqlalchemy import String, Integer, Boolean
@@ -16,4 +17,4 @@ class ScheduleOrm(Base):
     drug_name: Mapped[str_256] = mapped_column(String(256))
     rec_frequency: Mapped[int]
     duration: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
-    created_at: Mapped[created_at]
+    created_at: Mapped[datetime] = mapped_column(default=datetime.now)

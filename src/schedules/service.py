@@ -1,4 +1,4 @@
-from datetime import datetime, time, timedelta
+from datetime import datetime, time, timedelta, timezone
 from typing import List
 
 from fastapi import HTTPException
@@ -38,11 +38,12 @@ class ScheduleDal:
         return schedule
 
 
-def generate_medication_times(schedule: ScheduleOrm, hours_ahead: int) -> List[datetime] | None:
+def generate_medication_times(schedule: ScheduleOrm, hours_ahead: int) -> List[datetime]:
     time_day_start = time(8, 0)  # TODO: Вынести в constants.py
     time_day_end = time(22, 0)
     current_time = datetime.now()
     medication_times = []
+    print("time", current_time)
 
     end_window = current_time + timedelta(hours=hours_ahead)
 
@@ -51,7 +52,7 @@ def generate_medication_times(schedule: ScheduleOrm, hours_ahead: int) -> List[d
         end_window = min(end_window, treatment_end)
 
     if current_time.date() != schedule.created_at.date():
-        rec_time = datetime.combine(datetime.now().date(), time_day_start)
+        rec_time = datetime.combine(current_time.date(), time_day_start)
     else:
         remainder = schedule.created_at.minute % 15
         if remainder > 0:

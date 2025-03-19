@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     POSTGRES_USER: str
     POSTGRES_PASS: str
     POSTGRES_NAME: str
-    NEXT_TAKINGS_HOURS_AHEAD: int = 20
+    NEXT_TAKINGS_HOURS_AHEAD: int = 5
 
     @property
     def DATABASE_URL_async(self) -> str:

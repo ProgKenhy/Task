@@ -15,6 +15,9 @@ class ScheduleCreate(BaseModel):
     )
     model_config = ConfigDict(from_attributes=True)
 
+class ScheduleCreateResponse(BaseModel):
+    schedule_id: int = Field(gt=0, description="ID расписания")
+    model_config = ConfigDict(from_attributes=True)
 
 class SchedulesIdsResponse(BaseModel):
     schedules_ids: List[int] = Field(description="Список ID расписаний")
